@@ -8,29 +8,14 @@ import '@fontsource/poppins/400.css';
 import '@fontsource/poppins/700.css';
 import '@fontsource/poppins/900.css';
 import '../style.css'
+import { startups } from '../constants';
 
-const autoTextGenie: Startup = {
-	name: 'AutoTextGenie',
-	description: 'Use Automated GPT-4 commands on Every textbox on the Internet',
-	url: 'https://autotextgenie.com',
-	logo: '/images/logos/autotextgenie.png',
-	createdAt: new Date('2023-04-15'),
-	earnings: []
+for (const startup of startups) {
+	const earnings = await getEarnings({ stripeApiKey: startup.stripeApiSecret });
+	startup.startup.earnings = earnings.filter(startup.filtering);
 }
 
-const nameverseAI: Startup = {
-	name: 'Nameverse AI',
-	description: 'Custom Native Name Generator',
-	url: 'https://nameverse.app',
-	logo: '/images/logos/nameverse.png',
-	createdAt: new Date('2023-03-01'),
-	earnings: []
-}
-
-const earnings = await getEarnings();
-
-nameverseAI.earnings = earnings.filter(e => e.amount < 5);
-autoTextGenie.earnings = earnings.filter(e => e.amount > 5);
+const [ autoTextGenie, nameverseAI, giftdeasAI ] = startups.map(({ startup }) => startup as Startup);
 
 const { method } = Astro.request;
 
@@ -84,7 +69,7 @@ if (method === 'POST') {
 				<ProfileSidebar />
 			</aside>
 			<section class="lg:w-3/4">
-				<StartupList startups={[autoTextGenie, nameverseAI]} client:load />
+				<StartupList startups={[autoTextGenie, nameverseAI, giftdeasAI]} client:load />
 			</section>
 		</main>
 	</body>

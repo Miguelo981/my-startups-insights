@@ -1,8 +1,9 @@
 import Stripe from "stripe";
-import { STRIPE_API_KEY } from "../constants";
 import type { StripeBalanceTransaction } from "../models/stripe";
 
-export async function getEarnings({ stripeApiKey = STRIPE_API_KEY }: { stripeApiKey?: string }): Promise<StripeBalanceTransaction[]> {
+export async function getEarnings({ stripeApiKey }: { stripeApiKey?: string }): Promise<StripeBalanceTransaction[]> {
+  if (!stripeApiKey) return [];
+
   const stripe = new Stripe(stripeApiKey, {
     apiVersion: "2023-08-16",
   });

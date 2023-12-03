@@ -15,7 +15,7 @@ for (const startup of startups) {
 	startup.startup.earnings = earnings.filter(startup.filtering);
 }
 
-const [ autoTextGenie, nameverseAI, giftdeasAI ] = startups.map(({ startup }) => startup as Startup);
+const [ autoTextGenie, nameverseAI, giftdeasAI, hodlFrensClub ] = startups.map(({ startup }) => startup as Startup);
 
 const { method } = Astro.request;
 
@@ -69,7 +69,7 @@ if (method === 'POST') {
 				<ProfileSidebar />
 			</aside>
 			<section class="lg:w-3/4">
-				<StartupList startups={[autoTextGenie, nameverseAI, giftdeasAI]} client:load />
+				<StartupList startups={[autoTextGenie, nameverseAI, giftdeasAI, hodlFrensClub]} client:load />
 			</section>
 		</main>
 	</body>

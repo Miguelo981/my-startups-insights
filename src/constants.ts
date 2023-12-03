@@ -40,4 +40,16 @@ export const startups = [
         stripeApiSecret: import.meta.env.GIFTDEAS_STRIPE_API_KEY,
         filtering: (e: any) => e.amount > 0,
     },
+    {
+        startup: {
+            name: 'HODL! Frens Club',
+            description: 'Quit Wasting Precious Time on Idea Limbo!',
+            url: 'https://HODLfrensclub.com/',
+            logo: '/images/logos/hodlfrensclub.png',
+            createdAt: new Date('2023-12-03'),
+            earnings: [] as StripeBalanceTransaction[]
+        } as Startup,
+        stripeApiSecret: import.meta.env.HODL_FRENS_CLUB_STRIPE_API_KEY,
+        filtering: (e: any) => e.amount > 0,
+    },
 ]

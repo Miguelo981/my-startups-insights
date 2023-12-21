@@ -8,10 +8,17 @@ export async function getEarnings({ stripeApiKey }: { stripeApiKey?: string }): 
     apiVersion: "2023-08-16",
   });
 
-  const balanceTransactions = await stripe.balanceTransactions.list({
+  let balanceTransactions = await stripe.balanceTransactions.list({
     type: "charge",
     limit: 100,
   });
+
+  if (balanceTransactions.data.length === 0) {
+    balanceTransactions = await stripe.balanceTransactions.list({
+      type: "payment",
+      limit: 100,
+    });
+  }
 
   const parsedBalanceTransactions = balanceTransactions.data.map(
     (balanceTransaction) => {

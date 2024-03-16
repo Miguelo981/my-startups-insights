@@ -36,6 +36,7 @@ export default function StartupDetail({ startup }: StartupDetailProps) {
                             <img className="rounded-sm" src={startup.logo} />
                         </figure>
                         <h2 className="text-xl font-bold">{startup.name}</h2>
+                        {startup.sold && <span className="bg-blue-500 px-2.5 py-1 text-white rounded-md text-sm font-semibold mb-3">🎉 SOLD</span>}
                     </div>
                     <div></div>
                 </div>

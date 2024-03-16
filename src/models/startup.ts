@@ -5,6 +5,7 @@ export interface Startup {
     description: string;
     logo: string;
     url: string;
+    sold: boolean;
     createdAt: Date;
     earnings: StripeBalanceTransaction[];
 }

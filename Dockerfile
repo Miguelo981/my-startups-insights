@@ -4,8 +4,8 @@ WORKDIR /app
 COPY . .
 
 RUN npm i -g pnpm
-RUN pnpm install
-RUN npm run build
+RUN pnpm i
+RUN pnpm build
 
 ENV HOST=0.0.0.0
 ENV PORT=8080

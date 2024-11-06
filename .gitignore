@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 .netlify/
 .vscode/
+
+yarn.lock
+pnpm-lock.yaml
